@@ -2,7 +2,6 @@
 
 
 
-pass
 print("Digite o numero de pontos de telecom:")
 while True:
     try:
