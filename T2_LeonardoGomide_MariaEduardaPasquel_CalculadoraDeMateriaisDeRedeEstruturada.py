@@ -1,15 +1,16 @@
-
-
+import math
 
 def getPt(str):
-    print("Digite o numero de pontos de "+str+"(-1 para corrigir valores):")
+    print("Qual o numero de pontos de "+str+"? (-1 para corrigir valores):")
     while True:
         try:
             return int(input())
             break
         except ValueError:
-            print("Digite um numero inteiro:")
+            print("Digite um numero inteiro!")
 
+print("\nBem vindo à Lista de Convidados, seu amigo para programar sua festa de rede estruturada"
+    "\nComece especificando sua rede para podermos ajudá-lo:\n")
 while (True):
     ptTelecom = getPt("telecom")
     if (ptTelecom != -1):
@@ -35,6 +36,9 @@ while (True):
                         break
                 if ptVoz !=-1:
                     break
+
+ptTotal = ptRede+ptCFTV+ptVoz
+
 while True:
     print("\nQual categoria será utilizada para dados?"
         "\n 0 para cat 5e"
@@ -48,7 +52,7 @@ while True:
             catRede = int(input())
             break
         except ValueError:
-            print("Digite um numero inteiro:")
+            print("Digite um numero inteiro!")
     if catRede == 0:
         catRede = "cat 5e"
         break
@@ -66,47 +70,112 @@ while True:
         break
     print("Valor inválido!")
 
-print("\nO rack será aberto ou fechado?"
+print("\nO rack vai ser aberto ou fechado?"
     "\n 0 para aberto"
     "\n 1 para fechado")
 while True:
-    pass
-    try:
-        tipoRack = int(input())
+    while True:
+        try:
+            tipoRack = int(input())
+            break
+        except ValueError:
+            print("Digite um numero inteiro!")
+    if tipoRack == 0 or tipoRack == 1:
         break
-    except ValueError:
-        print("Digite um numero inteiro:")
+    else:
+        print("Valor inválido!")
 
-if 2*ptTelecom-(ptRede+ptCFTV+ptVoz)>0:
-    print("\nExistem "+str(2*ptTelecom-(ptRede+ptCFTV+ptVoz))+" tomadas inutilizadas")
+
+if 2*ptTelecom-(ptTotal)>0:
+    print("\nVocê tem "+str(2*ptTelecom-(ptTotal))+" tomadas inutilizadas")
+
+tamTotal = 4*math.ceil((ptTotal)/24)
+tamTemp = tamTotal
+qtdRack = 1
+while tamTemp  > 48:
+    tamTemp -= 48
+    qtdRack += 1
+if tipoRack == 0:
+    tamTotal += qtdRack*4
+else:
+    tamTotal += qtdRack*6
+tamTemp = tamTotal
+novaQtdRack = 1
+while tamTemp > 48:
+    tamTemp -= 48
+    novaQtdRack += 1
+if qtdRack != novaQtdRack:
+    if tipoRack == 0:
+        tamTotal += (novaQtdRack-qtdRack)*4
+    else:
+        tamTotal += (novaQtdRack-qtdRack)*6
+while True:
+    tamTemp= 1.5*tamTotal
+    novaQtdRack = 1
+    while tamTemp > 48:
+        tamTemp -= 48
+        novaQtdRack += 1
+    if novaQtdRack > qtdRack:
+        if tipoRack == 0:
+            tamTotal += (novaQtdRack-qtdRack)*4
+        else:
+            tamTotal += (novaQtdRack-qtdRack)*6
+        qtdRack = novaQtdRack
+    else:
+        break
+tamTotal= math.ceil(1.5*tamTotal)
+
+tamRack = math.ceil(tamTotal/qtdRack)
+if tamRack%2==1:
+    tamRack += 1
+if tamRack>=12 and tamRack%4:
+    tamRack += 2
+
+print("\nSua lista de materiais convidados para a festa de rede estruturada:")
+
+print("\nÁrea de Trabalho: \n"
+        "  -> "+str(ptRede+ptCFTV+ptVoz)+" tomadas fêmeas RJ-45 ("+str(ptRede+ptCFTV)+" "+catRede+" e "+str(ptVoz)+" cat 5e)\n"
+        "  -> "+str(ptTelecom)+" espelhos 4\"x2\"")
+if ptRede != 0:
+    print("  -> "+str(ptRede)+" patch cords (rede)-"+catRede)
+if ptCFTV != 0:
+    print("  -> "+str(ptCFTV)+" patch cords (CFTV)-"+catRede)
+if ptVoz != 0:
+    print("  -> "+str(ptVoz)+" patch cords (Voz)-cat 5e")
+print("  -> "+str(ptTelecom+ptTotal)+" etiquetas ("+str(ptTelecom)+" p/ espelho e "+str(ptTotal)+" p/ tomada)")
 
 if catRede == "cat 5e":
-    print("\nÁrea de Trabalho: \n"
-            "  -> "+str(ptRede+ptCFTV+ptVoz)+" tomadas fêmeas RJ-45 ("+str(ptRede+ptCFTV+ptVoz)+" cat 5e)\n"
-            "  -> "+str(ptTelecom)+" espelhos 4\"x2\"")
-    if ptRede != 0:
-        print("  -> "+str(ptRede)+" patch cord (rede)- "+catRede)
-    if ptCFTV != 0:
-        print("  -> "+str(ptCFTV)+" patch cord (CFTV)- "+catRede)
-    if ptVoz != 0:
-        print("  -> "+str(ptVoz)+" patch cord (Voz)- cat 5e")
-    print("  -> "+str(ptTelecom+ptRede+ptCFTV+ptVoz)+" etiquetas ("+str(ptTelecom)+" p/ espelho e "+str(ptRede+ptCFTV+ptVoz)+" p/ tomada)")
-
     print("\nMalha Horizontal: \n"
-            "  -> "+str(ptRede+ptCFTV+ptVoz)+" Cabos UTP ("+str(ptRede+ptCFTV+ptVoz)+" cat 5e)\n"
-            "  -> "+str(2*(ptRede+ptCFTV+ptVoz))+" etiquetas")
+            "  -> "+str(ptTotal)+" Cabos UTP  cat 5e\n"
+            "  -> "+str(2*(ptTotal))+" etiqutas")
 else:
-    print("\nÁrea de Trabalho: \n"
-            "  -> "+str(ptRede+ptCFTV+ptVoz)+" tomadas fêmeas RJ-45 ("+str(ptRede+ptCFTV)+" "+catRede+" e "+str(ptVoz)+" cat 5e)\n"
-            "  -> "+str(ptTelecom)+" espelhos 4\"x2\"")
-    if ptRede != 0:
-        print("  -> "+str(ptRede)+" patch cord (rede)- "+catRede)
-    if ptCFTV != 0:
-        print("  -> "+str(ptCFTV)+" patch cord (CFTV)- "+catRede)
-    if ptVoz != 0:
-        print("  -> "+str(ptVoz)+" patch cord (Voz)-cat 5e")
-    print("  -> "+str(ptTelecom+ptRede+ptCFTV+ptVoz)+" etiquetas ("+str(ptTelecom)+" p/ espelho e "+str(ptRede+ptCFTV+ptVoz)+" p/ tomada)")
-
     print("\nMalha Horizontal: \n"
-            "  -> "+str(ptRede+ptCFTV+ptVoz)+" Cabos UTP ("+str(ptRede+ptCFTV)+" "+catRede+" e "+str(ptVoz)+" cat 5e)\n"
-            "  -> "+str(2*(ptRede+ptCFTV+ptVoz))+" etiquetas")
+            "  -> "+str(ptTotal)+" Cabos UTP ("+str(ptRede+ptCFTV)+" "+catRede+" e "+str(ptVoz)+" cat 5e)\n"
+            "  -> "+str(2*(ptTotal))+" etiquetas")
+
+print("\nSala de Telecom: \n")
+if tipoRack == 0:
+    print("  -> "+str(qtdRack)+" racks abertos de "+str(tamRack)+"U")
+if tipoRack == 1:
+    print("  -> "+str(qtdRack)+" racks fechados de "+str(tamRack)+"U")
+print("  -> "+str(math.ceil((ptTotal)/24))+" patch panels "+catRede+"\n"
+        "  -> "+str(math.ceil((ptTotal)/24))+" stwitches\n"
+        "  -> "+str(2*math.ceil((ptTotal)/24))+" organizadores de cabo frontal\n"
+        "  -> "+str(qtdRack)+" bandejas")
+if tipoRack == 0:
+    print("  -> "+str(qtdRack)+" organizadores laterais")
+if tipoRack == 1:
+    print("  -> "+str(qtdRack)+" exaustores")
+if ptRede != 0:
+    print("  -> "+str(ptRede)+" patch cable (azul)-"+catRede)
+if ptCFTV != 0:
+    print("  -> "+str(ptCFTV)+" patch cords (vermelho)-"+catRede)
+if ptVoz != 0:
+    print("  -> "+str(ptVoz)+" patch cords (amarelo)-"+catRede)
+
+print("\nMiscelânea: \n"
+        "  -> "+str(4*(tamRack*qtdRack))+" porcas-gaiola\n"
+        "  -> "+str(24*(math.ceil((ptTotal)/24)))+" etiqutas p/ patch panel\n"
+        "  -> "+str(2*ptTotal)+" etiqutas p/ patch panel\n"
+        "  -> Abracadeiras de plastico\n"
+        "  -> Abracadeiras de velcro")
