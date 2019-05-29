@@ -9,7 +9,7 @@ def getPt(str):
         except ValueError:
             print("Digite um numero inteiro!")
 
-print("\nBem vindo à Lista de Convidados, seu amigo para programar sua festa de rede estruturada"
+print("\nBem vindo à Lista de Convidados, seu aplicativo para organizar festas de rede estruturada"
     "\nComece especificando sua rede para podermos ajudá-lo:\n")
 while (True):
     ptTelecom = getPt("telecom")
@@ -179,3 +179,5 @@ print("\nMiscelânea: \n"
         "  -> "+str(2*ptTotal)+" etiqutas p/ patch panel\n"
         "  -> Abracadeiras de plastico\n"
         "  -> Abracadeiras de velcro")
+
+print("\nObrigado por usar a Lista de Convidados, até a próxima")
