@@ -134,50 +134,50 @@ if tamRack>=12 and tamRack%4:
 print("\nSua lista de materiais convidados para a festa de rede estruturada:")
 
 print("\nÁrea de Trabalho: \n"
-        "  -> "+str(ptRede+ptCFTV+ptVoz)+" tomadas fêmeas RJ-45 ("+str(ptRede+ptCFTV)+" "+catRede+" e "+str(ptVoz)+" cat 5e)\n"
-        "  -> "+str(ptTelecom)+" espelhos 4\"x2\"")
+        "  -> "+str(ptRede+ptCFTV+ptVoz)+" tomadas fêmeas RJ-45 ("+str(ptRede+ptCFTV)+" "+catRede+" e "+str(ptVoz)+" cat 5e);\n"
+        "  -> "+str(ptTelecom)+" espelhos 4\"x2\";")
 if ptRede != 0:
-    print("  -> "+str(ptRede)+" patch cords (rede)-"+catRede)
+    print("  -> "+str(ptRede)+" patch cords (rede)-"+catRede)+";"
 if ptCFTV != 0:
-    print("  -> "+str(ptCFTV)+" patch cords (CFTV)-"+catRede)
+    print("  -> "+str(ptCFTV)+" patch cords (CFTV)-"+catRede+";")
 if ptVoz != 0:
-    print("  -> "+str(ptVoz)+" patch cords (Voz)-cat 5e")
-print("  -> "+str(ptTelecom+ptTotal)+" etiquetas ("+str(ptTelecom)+" p/ espelho e "+str(ptTotal)+" p/ tomada)")
+    print("  -> "+str(ptVoz)+" patch cords (Voz)-cat 5e;")
+print("  -> "+str(ptTelecom+ptTotal)+" etiquetas ("+str(ptTelecom)+" p/ espelho e "+str(ptTotal)+" p/ tomada):")
 
 if catRede == "cat 5e":
     print("\nMalha Horizontal: \n"
-            "  -> "+str(ptTotal)+" Cabos UTP  cat 5e\n"
-            "  -> "+str(2*(ptTotal))+" etiqutas")
+            "  -> "+str(ptTotal)+" Cabos UTP  cat 5e;\n"
+            "  -> "+str(2*(ptTotal))+" etiqutas;")
 else:
     print("\nMalha Horizontal: \n"
-            "  -> "+str(ptTotal)+" Cabos UTP ("+str(ptRede+ptCFTV)+" "+catRede+" e "+str(ptVoz)+" cat 5e)\n"
-            "  -> "+str(2*(ptTotal))+" etiquetas")
+            "  -> "+str(ptTotal)+" Cabos UTP ("+str(ptRede+ptCFTV)+" "+catRede+" e "+str(ptVoz)+" cat 5e);\n"
+            "  -> "+str(2*(ptTotal))+" etiquetas;")
 
 print("\nSala de Telecom: \n")
 if tipoRack == 0:
-    print("  -> "+str(qtdRack)+" racks abertos de "+str(tamRack)+"U")
+    print("  -> "+str(qtdRack)+" racks abertos de "+str(tamRack)+"U;")
 if tipoRack == 1:
-    print("  -> "+str(qtdRack)+" racks fechados de "+str(tamRack)+"U")
-print("  -> "+str(math.ceil((ptTotal)/24))+" patch panels "+catRede+"\n"
-        "  -> "+str(math.ceil((ptTotal)/24))+" stwitches\n"
-        "  -> "+str(2*math.ceil((ptTotal)/24))+" organizadores de cabo frontal\n"
-        "  -> "+str(qtdRack)+" bandejas")
+    print("  -> "+str(qtdRack)+" racks fechados de "+str(tamRack)+"U;")
+print("  -> "+str(math.ceil((ptTotal)/24))+" patch panels "+catRede+";\n"
+        "  -> "+str(math.ceil((ptTotal)/24))+" stwitches;\n"
+        "  -> "+str(2*math.ceil((ptTotal)/24))+" organizadores de cabo frontal;\n"
+        "  -> "+str(qtdRack)+" bandejas;")
 if tipoRack == 0:
-    print("  -> "+str(qtdRack)+" organizadores laterais")
+    print("  -> "+str(qtdRack)+" organizadores laterais;")
 if tipoRack == 1:
-    print("  -> "+str(qtdRack)+" exaustores")
+    print("  -> "+str(qtdRack)+" exaustores;")
 if ptRede != 0:
-    print("  -> "+str(ptRede)+" patch cable (azul)-"+catRede)
+    print("  -> "+str(ptRede)+" patch cable (azul)-"+catRede+";")
 if ptCFTV != 0:
-    print("  -> "+str(ptCFTV)+" patch cords (vermelho)-"+catRede)
+    print("  -> "+str(ptCFTV)+" patch cords (vermelho)-"+catRede+";")
 if ptVoz != 0:
-    print("  -> "+str(ptVoz)+" patch cords (amarelo)-"+catRede)
+    print("  -> "+str(ptVoz)+" patch cords (amarelo)-"+catRede+";")
 
 print("\nMiscelânea: \n"
-        "  -> "+str(4*(tamRack*qtdRack))+" porcas-gaiola\n"
-        "  -> "+str(24*(math.ceil((ptTotal)/24)))+" etiqutas p/ patch panel\n"
-        "  -> "+str(2*ptTotal)+" etiqutas p/ patch panel\n"
-        "  -> Abracadeiras de plastico\n"
-        "  -> Abracadeiras de velcro")
+        "  -> "+str(4*(tamRack*qtdRack))+" porcas-gaiola;\n"
+        "  -> "+str(24*(math.ceil((ptTotal)/24)))+" etiqutas p/ patch panel;\n"
+        "  -> "+str(2*ptTotal)+" etiqutas p/ patch panel;\n"
+        "  -> Abracadeiras de plastico;\n"
+        "  -> Abracadeiras de velcro;")
 
-print("\nObrigado por usar a Lista de Convidados, até a próxima")
+print("\nObrigado por usar a Lista de Convidados, até a próxima!")
