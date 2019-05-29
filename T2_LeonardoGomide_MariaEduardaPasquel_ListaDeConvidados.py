@@ -14,30 +14,37 @@ print("\nBem vindo à Lista de Convidados, seu aplicativo para organizar festas 
 while (True):
     ptTelecom = getPt("telecom")
     if (ptTelecom != -1):
-        while (True):
-            ptRede = getPt("conexão de rede (simples)")
-            if ptRede > 2*ptTelecom:
-                print ("Existem mais pontos que portas, digite um novo numero")
-            else:
-                break
+        ptRede = getPt("conexão de rede (simples)")
         if ptRede !=-1:
             while (True):
                 ptCFTV = getPt("CFTV IP")
-                if ptRede+ptCFTV > 2*ptTelecom:
+                if ptCFTV > 2*ptTelecom+ptRede:
                     print ("Existem mais pontos que portas, digite um novo numero")
                 else:
                     break
             if ptCFTV !=-1:
                 while (True):
                     ptVoz = getPt("voz sobe IP")
-                    if ptRede+ptCFTV+ptVoz > 2*ptTelecom:
+                    if ptCFTV+ptVoz > 2*ptTelecom+ptRede:
                         print ("Existem mais pontos que portas, digite um novo numero")
                     else:
                         break
                 if ptVoz !=-1:
                     break
 
-ptTotal = ptRede+ptCFTV+ptVoz
+ptTotal = 2*ptTelecom+ptRede
+
+print("\nQual o tamanho médio em metros da malha horizontal")
+while True:
+    try:
+        tamMedio = int(input())
+        if tamMedio > 90:
+            print("\nEsse cabo está meio longo, você deveria diminuí-lo!"
+                    "\nQual o novo tamanho:")
+        else:
+            break
+    except ValueError:
+        print("Digite um numero inteiro!")
 
 while True:
     print("\nQual categoria será utilizada para dados?"
@@ -86,9 +93,6 @@ while True:
         print("Valor inválido!")
 
 
-if 2*ptTelecom-(ptTotal)>0:
-    print("\nVocê tem "+str(2*ptTelecom-(ptTotal))+" tomadas inutilizadas")
-
 tamTotal = 4*math.ceil((ptTotal)/24)
 tamTemp = tamTotal
 qtdRack = 1
@@ -134,24 +138,21 @@ if tamRack>=12 and tamRack%4:
 print("\nSua lista de materiais convidados para a festa de rede estruturada:")
 
 print("\nÁrea de Trabalho: \n"
-        "  -> "+str(ptRede+ptCFTV+ptVoz)+" tomadas fêmeas RJ-45 ("+str(ptRede+ptCFTV)+" "+catRede+" e "+str(ptVoz)+" cat 5e);\n"
-        "  -> "+str(ptTelecom)+" espelhos 4\"x2\";")
+        "  -> "+str(ptTotal)+" tomadas fêmeas RJ-45 "+catRede+";\n"
+        "  -> "+str(ptTelecom)+" espelhos 4\"x2\" furação dupla;\n"
+        "  -> "+str(ptRede)+" espelhos 4\"x2\" furação simples;")
 if ptRede != 0:
-    print("  -> "+str(ptRede)+" patch cords (rede)-"+catRede)+";"
+    print("  -> "+str(ptTotal-(ptCFTV+ptVoz))+" patch cords (rede)-"+catRede+";")
 if ptCFTV != 0:
     print("  -> "+str(ptCFTV)+" patch cords (CFTV)-"+catRede+";")
 if ptVoz != 0:
-    print("  -> "+str(ptVoz)+" patch cords (Voz)-cat 5e;")
+    print("  -> "+str(ptVoz)+" patch cords (Voz)-"+catRede+";")
 print("  -> "+str(ptTelecom+ptTotal)+" etiquetas ("+str(ptTelecom)+" p/ espelho e "+str(ptTotal)+" p/ tomada):")
 
-if catRede == "cat 5e":
-    print("\nMalha Horizontal: \n"
-            "  -> "+str(ptTotal)+" Cabos UTP  cat 5e;\n"
-            "  -> "+str(2*(ptTotal))+" etiqutas;")
-else:
-    print("\nMalha Horizontal: \n"
-            "  -> "+str(ptTotal)+" Cabos UTP ("+str(ptRede+ptCFTV)+" "+catRede+" e "+str(ptVoz)+" cat 5e);\n"
-            "  -> "+str(2*(ptTotal))+" etiquetas;")
+
+print("\nMalha Horizontal: \n"
+        "  -> "+str(ptTotal*tamMedio)+"m Cabos UTP "+catRede+";\n"
+        "  -> "+str(2*ptTotal+ptRede)+" etiquetas;")
 
 print("\nSala de Telecom: \n")
 if tipoRack == 0:
@@ -167,17 +168,17 @@ if tipoRack == 0:
 if tipoRack == 1:
     print("  -> "+str(qtdRack)+" exaustores;")
 if ptRede != 0:
-    print("  -> "+str(ptRede)+" patch cable (azul)-"+catRede+";")
+    print("  -> "+str(ptTotal-(ptCFTV+ptVoz))+" patch cable (azul) 2,5m-"+catRede+";")
 if ptCFTV != 0:
-    print("  -> "+str(ptCFTV)+" patch cords (vermelho)-"+catRede+";")
+    print("  -> "+str(ptCFTV)+" patch cords (vermelho) 2,5m-"+catRede+";")
 if ptVoz != 0:
-    print("  -> "+str(ptVoz)+" patch cords (amarelo)-"+catRede+";")
+    print("  -> "+str(ptVoz)+" patch cords (amarelo) 2,5m-"+catRede+";")
 
 print("\nMiscelânea: \n"
         "  -> "+str(4*(tamRack*qtdRack))+" porcas-gaiola;\n"
         "  -> "+str(24*(math.ceil((ptTotal)/24)))+" etiqutas p/ patch panel;\n"
-        "  -> "+str(2*ptTotal)+" etiqutas p/ patch panel;\n"
-        "  -> Abracadeiras de plastico;\n"
-        "  -> Abracadeiras de velcro;")
+        "  -> "+str(2*ptTotal)+" etiqutas p/ patch cord;\n"
+        "  -> "+str(qtdRack)+" pacotes de abracadeira de plastico;\n"
+        "  -> "+str(3*qtdRack)+"m de abracadeira de velcro;")
 
 print("\nObrigado por usar a Lista de Convidados, até a próxima!")
