@@ -142,17 +142,17 @@ print("\nÁrea de Trabalho: \n"
         "  -> "+str(ptTelecom)+" espelhos 4\"x2\" furação dupla;\n"
         "  -> "+str(ptRede)+" espelhos 4\"x2\" furação simples;")
 if ptRede != 0:
-    print("  -> "+str(ptTotal-(ptCFTV+ptVoz))+" patch cords (rede)-"+catRede+";")
+    print("  -> "+str(ptTotal-(ptCFTV+ptVoz))+" patch cords 3m (rede)-"+catRede+";")
 if ptCFTV != 0:
-    print("  -> "+str(ptCFTV)+" patch cords (CFTV)-"+catRede+";")
+    print("  -> "+str(ptCFTV)+" patch cords 1m (CFTV)-"+catRede+";")
 if ptVoz != 0:
-    print("  -> "+str(ptVoz)+" patch cords (Voz)-"+catRede+";")
+    print("  -> "+str(ptVoz)+" patch cords 3m (Voz)-"+catRede+";")
 print("  -> "+str(ptTelecom+ptTotal)+" etiquetas ("+str(ptTelecom)+" p/ espelho e "+str(ptTotal)+" p/ tomada):")
 
 
 print("\nMalha Horizontal: \n"
-        "  -> "+str(ptTotal*tamMedio)+"m Cabos UTP "+catRede+";\n"
-        "  -> "+str(2*ptTotal+ptRede)+" etiquetas;")
+        "  -> "+str(ptTotal*tamMedio)+"m cabo UTP "+catRede+" ("+str(ptTotal)+" de "+str(tamMedio)+"m);\n"
+        "  -> "+str(2*ptTotal)+" etiquetas;")
 
 print("\nSala de Telecom: \n")
 if tipoRack == 0:
@@ -168,11 +168,11 @@ if tipoRack == 0:
 if tipoRack == 1:
     print("  -> "+str(qtdRack)+" exaustores;")
 if ptRede != 0:
-    print("  -> "+str(ptTotal-(ptCFTV+ptVoz))+" patch cable (azul) 2,5m-"+catRede+";")
+    print("  -> "+str(ptTotal-(ptCFTV+ptVoz))+" patch cable 2,5m (azul)-"+catRede+";")
 if ptCFTV != 0:
-    print("  -> "+str(ptCFTV)+" patch cords (vermelho) 2,5m-"+catRede+";")
+    print("  -> "+str(ptCFTV)+" patch cords 2,5m (vermelho)-"+catRede+";")
 if ptVoz != 0:
-    print("  -> "+str(ptVoz)+" patch cords (amarelo) 2,5m-"+catRede+";")
+    print("  -> "+str(ptVoz)+" patch cords 2,5m (amarelo)-"+catRede+";")
 
 print("\nMiscelânea: \n"
         "  -> "+str(4*(tamRack*qtdRack))+" porcas-gaiola;\n"
